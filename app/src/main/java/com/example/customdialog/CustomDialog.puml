@@ -1,0 +1,55 @@
+#zyh
+@startuml
+interface IDialog
+abstract CustomBaseDialog
+interface IDialog{
++dismiss():void
+interface OnBuildListener{}
+interface OnClickListener{}
+interface OnDismissListener{}
+}
+CustomBaseDialog <|-- CustomDialog
+CustomBaseDialog --> CustomDialogsManager
+note right: 自己看吧宝贝
+abstract CustomBaseDialog{
+-View view
++onCreate(Bundle savedInstanceState):void
++onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState):View
++onViewCreated(View view,Bundle savedInstanceState):void
++onStart():void
+#abstract getBaseView():View
+#abstract getLayoutRes():int
+#abstract getDialogView():View
+#isCancelableOutside():boolean
+#getDialogWidth():int
+#getDialogHeight():int
+#getDimAmount():float
+#getGravity():int
+#getAnimRes():int
++onDestroy():void
+}
+class CustomDialog{
+-CustomDialogController controller
+-IDialog.OnBuildListener buildListener
+-String FTag
+-IDialog.OnDismissListener dismissListener
++CustomDialog()
++getLayoutRes():int
++getDialogView():View
++getDialogWidth():int
++getDialogHeight():int
++isCancelableOutside():boolean
++isCancelable():boolean
++getDimAmount():float
+#getGravity():int
+#getAnimRes():int
+}
+IDialog <|.. CustomDialog
+CustomDialog --> CustomDialogController
+note right: 自己看吧宝贝
+CustomDialog --> ScreenUtil
+note right: 自己看吧宝贝
+CustomDialogsManager --> DialogWrapper
+note right: 自己看吧宝贝
+
+@enduml
